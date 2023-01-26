@@ -9,13 +9,15 @@ export default class Clear extends Component {
 
   clearAll = () => {
     console.log("Tyhjentää listan");
+    console.log(items)
     while (items.length > 0) {
       items.pop();
-      if (items.length === 0) {
-        return alert("Tyhjä");
-      } else {
-        return items;
-      }
+    }
+    if (items.length === 0) {
+      console.log(items)
+      return alert("Tyhjä");
+    } else {
+      return items;
     }
   };
   render() {
