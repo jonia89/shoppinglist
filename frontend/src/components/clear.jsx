@@ -9,15 +9,18 @@ export default class Clear extends Component {
 
   clearAll = () => {
     console.log("Tyhjentää listan");
-    console.log(items)
-    while (items.length > 0) {
-      items.pop();
-    }
-    if (items.length === 0) {
-      console.log(items)
-      return alert("Tyhjä");
-    } else {
-      return items;
+    console.log(items);
+    const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
+    if (areYouSure === "kyllä") {
+      while (items.length > 0) {
+        items.pop();
+      }
+      if (items.length === 0) {
+        console.log(items);
+        return alert("Lista tyhjennetty");
+      } else {
+        return items;
+      }
     }
   };
   render() {
@@ -27,7 +30,7 @@ export default class Clear extends Component {
           onDoubleClick={this.clearAll}
           className="btn btn-danger btn-m m-2"
         >
-          Tyhjennä
+          Tyhjennä tuplaklikkaamalla
         </button>
       </div>
     );

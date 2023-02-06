@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import checked from "../checked";
 import items from "../items";
 
 export default class New extends Component {
@@ -19,18 +20,18 @@ export default class New extends Component {
     color: "green",
   };
 
-  handleSubmit = () => {
+  handleSubmit = (item) => {
     console.log("handleSubmit");
-    if (items) {
-      console.log("Vitun vanmainen");
+    if (items.includes(item) || checked.includes(item)) {
+      console.log(item);
     }
     console.log(items);
     return items;
   }
 
   writeItem = () => {
-    console.log("Taidat olla melko vammainen jos et osaa edes kirjoittaa")
-    return this.state
+    console.log("merkkiä pitkä")
+    return;
   };
 
   render() {
