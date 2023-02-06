@@ -18,7 +18,7 @@ export default class Add extends Component {
             type="button"
             className="btn btn-secondary sm"
           >
-            Lisäämään
+            Muokkaamaan ostoslistaa
           </button>
         </div>
       </Link>

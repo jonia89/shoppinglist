@@ -11,14 +11,14 @@ export default class Back extends Component {
   };
   render() {
     return (
-      <Link to="/" onClick={Listpage}>
+      <Link to="/list" onClick={Listpage}>
         <div>
           <button
             type="button"
             style={this.buttonStyle}
             className="btn btn-secondary sm"
           >
-            Listaan
+            Ostoslistaan
           </button>
         </div>
       </Link>
