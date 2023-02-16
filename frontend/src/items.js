@@ -1,3 +1,3 @@
-const items = ["Margariini", "Tomaatteja"];
+let items = ["Leipä", "Margariini"];
 items.sort();
 export default items;

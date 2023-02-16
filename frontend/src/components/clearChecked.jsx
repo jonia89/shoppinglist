@@ -2,26 +2,23 @@ import React, { Component } from "react";
 import checked from "../checked";
 import items from "../items";
 
-export default class Clear extends Component {
+export default class Clearchecked extends Component {
   constructor() {
     super();
-    this.clearAll.bind(this);
+    this.clearChecked.bind(this);
   }
 
-  clearAll = () => {
-    console.log("Tyhjentää listan");
+  clearChecked = () => {
+    console.log("Poistaa jo ostetut");
     console.log(items, checked);
     const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
     if (areYouSure === "kyllä") {
-      while (items.length > 0) {
-        items.pop();
-        while (checked.length > 0) {
-          checked.pop();
-        }
+      while (checked.length > 0) {
+        checked.pop();
       }
-      if (items.length === 0 && checked.length === 0) {
+      if (checked.length === 0) {
         console.log(items, checked);
-        return alert("Lista tyhjennetty");
+        return alert("Ostetut poistettu");
       } else {
         return items && checked;
       }
@@ -31,10 +28,10 @@ export default class Clear extends Component {
     return (
       <div>
         <button
-          onDoubleClick={this.clearAll}
+          onDoubleClick={this.clearChecked}
           className="btn btn-danger btn-m m-2"
         >
-          Tyhjennä tuplaklikkaamalla
+          Poista valmiit tuplaklikkaamalla
         </button>
       </div>
     );

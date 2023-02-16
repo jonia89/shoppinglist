@@ -6,8 +6,14 @@ import Counter from "../components/counter";
 import New from "../components/addItem";
 import Icon from "../components/Icon";
 import Clear from "../components/clear";
+import Clearchecked from "../components/clearChecked";
 
 export default class Addpage extends Component {
+  clearStyle = {
+    display: "flex",
+    direction: "row",
+  };
+
   listPage = () => {
     return;
   };
@@ -18,7 +24,10 @@ export default class Addpage extends Component {
         <New />
         <Manage />
         <Counter />
-        <Clear />
+        <div style={this.clearStyle}>
+          <Clearchecked />
+          <Clear />
+        </div>
         <Icon />
       </div>
     );

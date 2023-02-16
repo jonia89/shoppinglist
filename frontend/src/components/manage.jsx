@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import checked from "../checked";
 import items from "../items";
 
 export default class Manage extends Component {
@@ -7,16 +8,17 @@ export default class Manage extends Component {
     margin: "50px",
     display: "flex",
   };
+  itemList = [...items, ...checked];
+
   handleDelete = (item) => {
-    items.pop(item);
-    console.log("Poistaa tuotteen");
+    console.log("Poistaa tuotteen", item);
   };
   render() {
     return (
       <div>
         <span style={this.listStyle}>
           <ul>
-            {items.map((item) => (
+            {this.itemList.sort().map((item) => (
               <li key={item}>
                 {item}
                 <button
