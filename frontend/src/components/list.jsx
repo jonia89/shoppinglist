@@ -1,5 +1,5 @@
 import Checkbox from "@mui/material/Checkbox";
-import items from "../items";
+import { items } from "./addItem";
 import { Component } from "react";
 import checked from "../checked";
 
@@ -36,7 +36,7 @@ export default class List extends Component {
 
   render() {
     return (
-      <div>
+      <div className="item-list">
         <span style={this.listStyle}>
           <ul>
             {items.map((item) => (

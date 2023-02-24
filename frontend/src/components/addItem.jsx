@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import checked from "../checked";
 import items from "../items";
 
 export default class New extends Component {
@@ -19,26 +18,44 @@ export default class New extends Component {
     background: "yellow",
     color: "green",
   };
-
-  handleSubmit = (item) => {
-    console.log("handleSubmit");
-    if (items.includes(item) || checked.includes(item)) {
-      console.log(item);
-    }
-    console.log(items);
-    return items;
+  constructor(props) {
+    super(props);
+    this.addItem = this.addItem.bind(this);
+    this.state = {
+      items: [...items],
+    };
   }
 
+  addItem = (item) => {
+    if (this.inputElement !== "") {
+      let newItem = this.inputElement.value;
+      console.log(newItem);
+      this.state.items.push(newItem);
+      this.state.items.sort((a, b) => a - b);
+      this.inputElement.value = "";
+    }
+
+    console.log(this.state.items);
+    item.preventDefault();
+    return this.state.items;
+  };
+
   writeItem = () => {
-    console.log("merkkiä pitkä")
+    console.log("merkkiä pitkä");
     return;
   };
 
   render() {
     return (
       <div className="New">
-        <form style={this.barStyle} onSubmit={this.handleSubmit}>
-          <input type="text" value={this.item} onChange={this.writeItem} />
+        <form style={this.barStyle} onSubmit={this.addItem}>
+          <input
+            ref={(item) => (this.inputElement = item)}
+            className="'New-item"
+            placeholder="Kirjoita tuote"
+            type="text"
+            onChange={this.writeItem}
+          />
           <button style={this.buttonStyle} type="submit">
             Lisää
           </button>
@@ -47,3 +64,4 @@ export default class New extends Component {
     );
   }
 }
+export { items };
