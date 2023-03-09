@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import checked from "../checked";
-import items from "../items";
+import { items } from "./addItem";
 
 export default class Manage extends Component {
   listStyle = {
@@ -8,17 +8,26 @@ export default class Manage extends Component {
     margin: "50px",
     display: "flex",
   };
-  itemList = [...items, ...checked];
 
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.state = {
+      items: [...items],
+      checked: [...checked],
+    };
+    this.state = { itemList: [...this.state.items, ...this.state.checked] };
+  }
   handleDelete = (item) => {
     console.log("Poistaa tuotteen", item);
+    return this.state.itemList;
   };
   render() {
     return (
       <div>
         <span style={this.listStyle}>
           <ul>
-            {this.itemList.sort().map((item) => (
+            {this.state.itemList.map((item) => (
               <li key={item}>
                 {item}
                 <button

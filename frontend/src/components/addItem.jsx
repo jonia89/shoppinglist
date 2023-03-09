@@ -27,22 +27,23 @@ export default class New extends Component {
   }
 
   addItem = (item) => {
-    if (this.inputElement !== "") {
+    if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
       let newItem = this.inputElement.value;
-      console.log(newItem);
       this.state.items.push(newItem);
       this.state.items.sort((a, b) => a - b);
       this.inputElement.value = "";
+      console.log(this.state.items);
+      item.preventDefault();
+      return this.state.items;
+    } else if (
+      this.inputElement.value.length < 3 &&
+      this.inputElement.value.length > 0
+    ) {
+      return alert("Eipä taida olla tollaista tuotetta");
+    } else {
+      if (this.inputElement.value === "");
+      return alert("Tuotekenttä on tyhjä! Syötä tuote");
     }
-
-    console.log(this.state.items);
-    item.preventDefault();
-    return this.state.items;
-  };
-
-  writeItem = () => {
-    console.log("merkkiä pitkä");
-    return;
   };
 
   render() {
@@ -54,9 +55,11 @@ export default class New extends Component {
             className="'New-item"
             placeholder="Kirjoita tuote"
             type="text"
-            onChange={this.writeItem}
           />
-          <button style={this.buttonStyle} type="submit">
+          <button
+            style={this.buttonStyle}
+            type="submit"
+          >
             Lisää
           </button>
         </form>

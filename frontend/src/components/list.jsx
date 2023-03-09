@@ -4,10 +4,14 @@ import { Component } from "react";
 import checked from "../checked";
 
 export default class List extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.liftUp.bind(this);
     this.dropDown.bind(this);
+    this.state = {
+      items: [...items],
+      checked: [...checked],
+    };
   }
 
   listStyle = {
@@ -39,7 +43,7 @@ export default class List extends Component {
       <div className="item-list">
         <span style={this.listStyle}>
           <ul>
-            {items.map((item) => (
+            {this.state.items.map((item) => (
               <li key={item}>
                 {item}
                 <Checkbox onChange={this.dropDown} color="success" />

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import List from "../components/list";
-import Counter from "../components/counter";
+import Left from "../components/itemsLeft";
 import Add from "../components/toAdd";
 import Icon from "../components/Icon";
 
@@ -13,7 +13,7 @@ export default class Listpage extends Component {
     return (
       <div>
         <Add />
-        <Counter />
+        <Left />
         <List />
         <Icon />
       </div>
