@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import checked from "../checked";
-import { items } from "./addItem";
+import { items, checked } from "../App";
 
 export default class Manage extends Component {
   listStyle = {

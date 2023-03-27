@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import checked from "../checked";
-import items from "../items";
+import { items, checked } from "../App";
 
 export default class Clearchecked extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.clearChecked.bind(this);
+    this.state = {
+      items: [...items],
+      checked: [...checked]
+    }
   }
 
   clearChecked = () => {

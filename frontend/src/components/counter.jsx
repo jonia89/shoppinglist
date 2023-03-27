@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import checked from "../checked";
-import { items } from "./addItem";
+import { items, checked } from "../App";
 
 export default class Counter extends Component {
   textStyle = {
@@ -12,24 +11,25 @@ export default class Counter extends Component {
   };
   constructor(props) {
     super(props);
-    this.countObjects.bind(this)
+    this.countObjects.bind(this);
     this.state = {
       items: [...items],
+      checked: [...checked]
     };
   }
 
   countObjects = () => {
-    if (this.state.items.length + checked.length === 0)
+    if (this.state.items.length + this.state.checked.length === 0)
       return "Ostoslista on tyhjä";
-    else if (this.state.items.length + checked.length === 1)
+    else if (this.state.items.length + this.state.checked.length === 1)
       return (
         "Ostoslistalla on " +
-        (this.state.items.length + checked.length) +
+        (this.state.items.length + this.state.checked.length) +
         " tuote"
       );
     return (
       "Ostoslistalla on " +
-      (this.state.items.length + checked.length) +
+      (this.state.items.length + this.state.checked.length) +
       " tuotetta"
     );
   };

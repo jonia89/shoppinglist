@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Addpage from "../pages/addPage";
+
 export default class Add extends Component {
   buttonStyle = {
     display: "flex",

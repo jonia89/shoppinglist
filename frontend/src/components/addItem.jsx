@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import items from "../items";
+import { items, checked } from "../App";
 
 export default class New extends Component {
   barStyle = {
@@ -23,12 +23,15 @@ export default class New extends Component {
     this.addItem = this.addItem.bind(this);
     this.state = {
       items: [...items],
-    };
+      checked: [...checked]
+    }
   }
 
   addItem = (item) => {
     if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-      let newItem = this.inputElement.value.charAt(0).toUpperCase() + this.inputElement.value.slice(1);
+      let newItem =
+        this.inputElement.value.charAt(0).toUpperCase() +
+        this.inputElement.value.slice(1);
       this.state.items.push(newItem);
       this.state.items.sort((a, b) => a - b);
       this.inputElement.value = "";
@@ -56,10 +59,7 @@ export default class New extends Component {
             placeholder="Kirjoita tuote"
             type="text"
           />
-          <button
-            style={this.buttonStyle}
-            type="submit"
-          >
+          <button style={this.buttonStyle} type="submit" onClick={this.setState = () => this.state}>
             Lisää
           </button>
         </form>
@@ -67,4 +67,3 @@ export default class New extends Component {
     );
   }
 }
-export { items };

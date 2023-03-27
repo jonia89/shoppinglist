@@ -1,7 +1,6 @@
 import Checkbox from "@mui/material/Checkbox";
-import { items } from "./addItem";
-import { Component } from "react";
-import checked from "../checked";
+import { items,checked } from "../App";
+import React, { Component } from "react";
 
 export default class List extends Component {
   constructor(props) {

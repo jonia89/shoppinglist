@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Listpage from "../pages/listPage";
+
 export default class Back extends Component {
   buttonStyle = {
     display: "flex",

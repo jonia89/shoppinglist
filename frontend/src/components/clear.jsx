@@ -1,29 +1,32 @@
 import React, { Component } from "react";
-import checked from "../checked";
-import items from "../items";
+import { items, checked } from "../App";
 
 export default class Clear extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.clearAll.bind(this);
+    this.state = {
+      items: [...items],
+      checked: [...checked]
+    }
   }
 
   clearAll = () => {
     console.log("Tyhjentää listan");
-    console.log(items, checked);
+    console.log(this.state.items, this.state.checked);
     const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
     if (areYouSure === "kyllä") {
-      while (items.length > 0) {
+      while (this.state.items.length > 0) {
         items.pop();
-        while (checked.length > 0) {
+        while (this.state.checked.length > 0) {
           checked.pop();
         }
       }
-      if (items.length === 0 && checked.length === 0) {
+      if (this.state.items.length === 0 && this.state.checked.length === 0) {
         console.log(items, checked);
         return alert("Lista tyhjennetty");
       } else {
-        return items && checked;
+        return this.state.items && this.state.checked;
       }
     }
   };
