@@ -28,7 +28,7 @@ export default class New extends Component {
 
   addItem = (item) => {
     if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-      let newItem = this.inputElement.value;
+      let newItem = this.inputElement.value.charAt(0).toUpperCase() + this.inputElement.value.slice(1);
       this.state.items.push(newItem);
       this.state.items.sort((a, b) => a - b);
       this.inputElement.value = "";
