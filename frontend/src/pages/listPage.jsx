@@ -1,22 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import List from "../components/list";
 import Left from "../components/itemsLeft";
-import Add from "../components/toAdd";
 import Icon from "../components/Icon";
 
-export default class Listpage extends Component {
-  addPage() {
+const Listpage = () => {
+  const buttonStyle = {
+    display: "flex",
+    margin: "50px",
+    padding: "20px",
+    background: "blue",
+    color: "white",
+  };
+  const addPage = () => {
     return;
-  }
-  render() {
-    return (
-      <div>
-        <Add />
-        <Left />
-        <List />
-        <Icon />
-      </div>
-    );
-  }
-}
+  };
+
+  return (
+    <div>
+      <Link to="/add" onClick={addPage()}>
+        <div>
+          <button
+            style={buttonStyle}
+            type="button"
+            className="btn btn-secondary sm"
+          >
+            Muokkaamaan ostoslistaa
+          </button>
+        </div>
+      </Link>
+      <Left />
+      <List />
+      <Icon />
+    </div>
+  );
+};
+
+export default Listpage;

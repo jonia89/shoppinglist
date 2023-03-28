@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { items, checked } from "../App";
+import React from "react";
 
-export default class New extends Component {
-  barStyle = {
+  const New = () => {
+  const barStyle = {
     display: "flex",
     padding: "20px",
     alignItems: "center",
     justifyContent: "center",
     background: "gray",
   };
-  buttonStyle = {
+  const buttonStyle = {
     margin: "20px",
     padding: "20px",
     display: "flex",
@@ -18,16 +17,8 @@ export default class New extends Component {
     background: "yellow",
     color: "green",
   };
-  constructor(props) {
-    super(props);
-    this.addItem = this.addItem.bind(this);
-    this.state = {
-      items: [...items],
-      checked: [...checked]
-    }
-  }
 
-  addItem = (item) => {
+ const addItem = (item) => {
     if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
       let newItem =
         this.inputElement.value.charAt(0).toUpperCase() +
@@ -49,21 +40,25 @@ export default class New extends Component {
     }
   };
 
-  render() {
     return (
       <div className="New">
-        <form style={this.barStyle} onSubmit={this.addItem}>
+        <form style={barStyle} onSubmit={addItem()}>
           <input
             ref={(item) => (this.inputElement = item)}
             className="'New-item"
             placeholder="Kirjoita tuote"
             type="text"
           />
-          <button style={this.buttonStyle} type="submit" onClick={this.setState = () => this.state}>
+          <button
+            style={buttonStyle}
+            type="submit"
+            //onClick={(this.setState = () => this.state)}
+          >
             Lisää
           </button>
         </form>
       </div>
     );
   }
-}
+
+export default New

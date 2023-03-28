@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
-import Back from "../components/toList";
 import Manage from "../components/manage";
 import Counter from "../components/counter";
 import New from "../components/addItem";
@@ -8,28 +8,46 @@ import Icon from "../components/Icon";
 import Clear from "../components/clear";
 import Clearchecked from "../components/clearChecked";
 
-export default class Addpage extends Component {
-  clearStyle = {
+const Addpage = () => {
+  const clearStyle = {
     display: "flex",
     direction: "row",
   };
+  const buttonStyle = {
+    display: "flex",
+    margin: "50px",
+    padding: "20px",
+    background: "blue",
+    color: "white",
+  };
 
-  listPage = () => {
+  const listPage = () => {
     return;
   };
-  render() {
-    return (
-      <div>
-        <Back />
-        <New />
-        <Manage />
-        <Counter />
-        <div style={this.clearStyle}>
-          <Clearchecked />
-          <Clear />
+
+  return (
+    <div>
+      <Link to="/list" onClick={listPage()}>
+        <div>
+          <button
+            type="button"
+            style={buttonStyle}
+            className="btn btn-secondary sm"
+          >
+            Ostoslistaan
+          </button>
         </div>
-        <Icon />
+      </Link>
+      <New />
+      <Manage />
+      <Counter />
+      <div style={clearStyle}>
+        <Clearchecked />
+        <Clear />
       </div>
-    );
-  }
-}
+      <Icon />
+    </div>
+  );
+};
+
+export default Addpage;

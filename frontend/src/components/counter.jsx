@@ -1,45 +1,38 @@
-import React, { Component } from "react";
-import { items, checked } from "../App";
+import React from "react";
 
-export default class Counter extends Component {
-  textStyle = {
+const Counter = () => {
+
+  const textStyle = {
     fontSize: "25px",
     color: "red",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   };
-  constructor(props) {
-    super(props);
-    this.countObjects.bind(this);
-    this.state = {
-      items: [...items],
-      checked: [...checked]
-    };
-  }
-
-  countObjects = () => {
-    if (this.state.items.length + this.state.checked.length === 0)
+ 
+  const countObjects = () => {
+    if (this.props.items.length + this.props.checked.length === 0)
       return "Ostoslista on tyhjä";
-    else if (this.state.items.length + this.state.checked.length === 1)
+    else if (this.props.items.length + this.props.checked.length === 1)
       return (
         "Ostoslistalla on " +
-        (this.state.items.length + this.state.checked.length) +
+        (this.props.items.length + this.props.checked.length) +
         " tuote"
       );
     return (
       "Ostoslistalla on " +
-      (this.state.items.length + this.state.checked.length) +
+      (this.props.items.length + this.props.checked.length) +
       " tuotetta"
     );
   };
-  render() {
+  
     return (
       <div>
-        <span style={this.textStyle} className="badge badge-primary m-5">
-          {this.countObjects()}
+        <span style={textStyle} className="badge badge-primary m-5">
+          {countObjects()}
         </span>
       </div>
     );
   }
-}
+
+export default Counter

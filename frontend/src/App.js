@@ -1,17 +1,20 @@
-import React, { Component } from "react";
+import React, {  useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Rootpage from "./pages/rootPage";
 import Listpage from "./pages/listPage";
 import Addpage from "./pages/addPage";
-const items = ["Pizza", "Leipä, ruis", "Maito"].sort();
-const checked = ["Kaljaa", "Tonnikalaa", "Majoneesia"].sort();
+//const items = ["Pizza", "Leipä, ruis", "Maito"].sort();
+//const checked = ["Kaljaa", "Tonnikalaa", "Majoneesia"].sort();
 
-export default class App extends Component {
-  render() {
+ const App = () => {
+  const items = useState([]);
+  const checked = useState([]);
+  
+  
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Rootpage />} />
+          <Route path="/" element={<Rootpage />} useState={[items, checked]}/>
           <Route path="/list" element={<Listpage />} />
 
           <Route path="/add" element={<Addpage />} />
@@ -19,5 +22,5 @@ export default class App extends Component {
       </BrowserRouter>
     );
   }
-}
-export { items, checked };
+export default App;
+
