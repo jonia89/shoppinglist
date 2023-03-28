@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, setState } from "react";
 
 const Left = () => {
+  const [items, checked] = useState([])
   const textStyle = {
     fontSize: "25px",
     color: "red",
@@ -10,28 +11,28 @@ const Left = () => {
   };
 
   const leftToGo = () => {
-    if (this.props.items.length === 0 && this.props.checked.length > 0)
+    if (items.length === 0 && checked.length > 0)
       return "Kaikki ostokset hoidettu, on aika suunnata kassalle";
-    else if (this.props.items.length === 1)
+    else if (items.length === 1)
       return (
         "Vielä " +
-        this.props.items.length +
+        items.length +
         " \ntuote jäljellä"
       );
-    else if (this.props.items.length > 1)
+    else if (items.length > 1)
       return (
-        "Vielä " + this.props.items.length + " \ntuotetta jäljellä"
+        "Vielä " + items.length + " \ntuotetta jäljellä"
       );
-      else if (this.props.items.length + this.props.checked.length === 0)
+      else if (items.length + checked.length === 0)
       return ("Siirry muokkaamaan listaa")
-    else if (this.props.items.length < 0)
+    else if (items.length < 0)
       return "Nyt on jotain pahasti pielessä";
   };
 
   
     return (
       <div>
-        <span style={textStyle} className="badge badge-primary m-5">
+        <span onChange={() => setState()} style={textStyle} className="badge badge-primary m-5">
           {leftToGo()}
         </span>
       </div>

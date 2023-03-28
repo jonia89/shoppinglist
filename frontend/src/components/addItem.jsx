@@ -1,6 +1,7 @@
-import React from "react";
+import React, { setState, useState } from "react";
 
-  const New = () => {
+const New = () => {
+  let [items, newItem] = useState([]);
   const barStyle = {
     display: "flex",
     padding: "20px",
@@ -18,17 +19,17 @@ import React from "react";
     color: "green",
   };
 
- const addItem = (item) => {
+  const addItem = (item) => {
     if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-      let newItem =
+      newItem =
         this.inputElement.value.charAt(0).toUpperCase() +
         this.inputElement.value.slice(1);
-      this.state.items.push(newItem);
-      this.state.items.sort((a, b) => a - b);
+      items += newItem;
+      items.sort((a, b) => a - b);
       this.inputElement.value = "";
-      console.log(this.state.items);
+      console.log(items);
       item.preventDefault();
-      return this.state.items;
+      return items;
     } else if (
       this.inputElement.value.length < 3 &&
       this.inputElement.value.length > 0
@@ -40,25 +41,26 @@ import React from "react";
     }
   };
 
-    return (
-      <div className="New">
-        <form style={barStyle} onSubmit={addItem()}>
-          <input
-            ref={(item) => (this.inputElement = item)}
-            className="'New-item"
-            placeholder="Kirjoita tuote"
-            type="text"
-          />
-          <button
-            style={buttonStyle}
-            type="submit"
-            //onClick={(this.setState = () => this.state)}
-          >
-            Lisää
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="New">
+      <form style={barStyle} onSubmit={addItem()}>
+        <input
+          ref={(item) => (this.inputElement = item)}
+          className="'New-item"
+          placeholder="Kirjoita tuote"
+          type="text"
+          onSubmit={() => setState()}
+        />
+        <button
+          style={buttonStyle}
+          type="submit"
+          //onClick={(this.setState = () => this.state)}
+        >
+          Lisää
+        </button>
+      </form>
+    </div>
+  );
+};
 
-export default New
+export default New;
