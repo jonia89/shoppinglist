@@ -1,6 +1,8 @@
-import { items, checked } from "../App";
+import { useState } from "react";
 
-const clearChecked = () => {
+const Clearchecked = () => {
+  const items = useState([]);
+  const checked = useState([]);
   console.log("Poistaa jo ostetut");
   console.log(items, checked);
   const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
@@ -16,4 +18,4 @@ const clearChecked = () => {
     }
   }
 };
-export default clearChecked;
+export default Clearchecked;

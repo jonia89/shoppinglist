@@ -1,9 +1,11 @@
-import { items, checked } from "../App";
+import { useState } from "react";
 
-const countObjects = () => {
+const Countobjects = () => {
+  const items = useState([]);
+  const checked = useState([]);
   if (items.length + checked.length === 0) return "Ostoslista on tyhjä";
   else if (items.length + checked.length === 1)
     return "Ostoslistalla on " + (items.length + checked.length) + " tuote";
   return "Ostoslistalla on " + (items.length + checked.length) + " tuotetta";
 };
-export default countObjects;
+export default Countobjects;

@@ -1,10 +1,12 @@
-import { items } from "../App";
+import { useState } from "react";
 
-const addItem = (item) => {
+const Additem = (item) => {
+  const items = useState([]);
+  const newItem =
+    this.inputElement.value.charAt(0).toUpperCase() +
+    this.inputElement.value.slice(1);
+
   if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-    const newItem =
-      this.inputElement.value.charAt(0).toUpperCase() +
-      this.inputElement.value.slice(1);
     items.push(newItem);
     items.sort((a, b) => a - b);
     this.inputElement.value = "";
@@ -21,4 +23,4 @@ const addItem = (item) => {
     return alert("Tuotekenttä on tyhjä! Syötä tuote");
   }
 };
-export default addItem;
+export default Additem;

@@ -1,7 +1,9 @@
-import { items, checked } from "../App";
+import { useState } from "react";
 
-const clearAll = () => {
-    console.log("Tyhjentää listan");
+const Clearall = () => {
+  const items = useState([]);
+  const checked = useState([]);
+  console.log("Tyhjentää listan");
     console.log(items, checked);
     const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
     if (areYouSure === "kyllä") {
@@ -19,4 +21,4 @@ const clearAll = () => {
       }
     }
   };
- export default clearAll
+ export default Clearall

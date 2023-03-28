@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import "./App.css";
@@ -14,23 +14,23 @@ import {
   itemListStyle,
   leftToTextStyle,
 } from "./styles";
-import addItem from "./components/addItem";
-import clearAll from "./components/clearAll";
-import clearChecked from "./components/clearChecked";
-import countObjects from "./components/countObjects";
-import dropDown from "./components/dropDown";
-import handleDelete from "./components/handleDelete";
-import leftToGo from "./components/leftToGo";
-import liftUp from "./components/liftUp";
+import Additem from "./components/addItem";
+import Clearall from "./components/clearAll";
+import Clearchecked from "./components/clearChecked";
+import Countobjects from "./components/countObjects";
+import Dropdown from "./components/dropDown";
+import Handledelete from "./components/handleDelete";
+import Lefttogo from "./components/leftToGo";
+import Liftup from "./components/liftUp";
 
-const items = [];
-const checked = [];
+//const items = [];
+//const checked = [];
 
 const Home = () => (
   <div>
     <div>
       <span style={textStyle} className="badge badge-primary m-5">
-        {countObjects}
+        {Countobjects}
       </span>
     </div>
     <Link to="/list">
@@ -66,7 +66,7 @@ const List = () => (
     </Link>
     <div>
       <span style={leftToTextStyle} className="badge badge-primary m-5">
-        {leftToGo}
+        {Lefttogo}
       </span>
     </div>
     <div className="item-list">
@@ -75,7 +75,7 @@ const List = () => (
           {this.items.map((item) => (
             <li key={item}>
               {item}
-              <Checkbox onChange={dropDown} color="success" />
+              <Checkbox onChange={Dropdown} color="success" />
             </li>
           ))}
         </ul>
@@ -86,7 +86,7 @@ const List = () => (
             <li key={item}>
               {item}
               <Checkbox
-                onChange={liftUp}
+                onChange={Liftup}
                 defaultChecked={true}
                 color="success"
               />
@@ -116,7 +116,7 @@ const Add = () => (
       </div>
     </Link>
     <div className="New">
-      <form style={barStyle} onSubmit={addItem}>
+      <form style={barStyle} onSubmit={Additem}>
         <input
           ref={(item) => (this.inputElement = item)}
           className="'New-item"
@@ -139,7 +139,7 @@ const Add = () => (
             <li key={item}>
               {item}
               <button
-                onClick={handleDelete}
+                onClick={Handledelete}
                 className="btn btn-danger btn-sm m-2"
               >
                 Poista
@@ -152,7 +152,7 @@ const Add = () => (
             <li key={item}>
               {item}
               <button
-                onClick={handleDelete}
+                onClick={Handledelete}
                 className="btn btn-danger btn-sm m-2"
               >
                 Poista
@@ -164,20 +164,20 @@ const Add = () => (
     </div>
     <div>
       <span style={textStyle} className="badge badge-primary m-5">
-        {countObjects}
+        {Countobjects}
       </span>
     </div>
     <div style={clearStyle}>
       <div>
         <button
-          onDoubleClick={clearChecked}
+          onDoubleClick={Clearchecked}
           className="btn btn-danger btn-m m-2"
         >
           Poista valmiit tuplaklikkaamalla
         </button>
       </div>
       <div>
-        <button onDoubleClick={clearAll} className="btn btn-danger btn-m m-2">
+        <button onDoubleClick={Clearall} className="btn btn-danger btn-m m-2">
           Tyhjennä tuplaklikkaamalla
         </button>
       </div>
@@ -191,8 +191,6 @@ const Add = () => (
 );
 
 const App = () => {
-  const items = useState([]);
-  const checked = useState([]);
 
   return (
     <BrowserRouter>
@@ -205,5 +203,4 @@ const App = () => {
     </BrowserRouter>
   );
 };
-export { items, checked };
 export default App;

@@ -1,6 +1,8 @@
-import { items, checked } from "../App";
+import { useState } from "react";
 
-const dropDown = (item) => {
+const Dropdown = (item) => {
+  const items = useState([]);
+  const checked = useState([]);
     console.log("tiputtaa", item);
     items.pop(item);
     checked.push(item);
@@ -8,4 +10,4 @@ const dropDown = (item) => {
     console.log(checked);
     return [...items, ...checked];
   };
-  export default dropDown
+  export default Dropdown

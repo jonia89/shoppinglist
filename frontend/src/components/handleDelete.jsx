@@ -1,7 +1,9 @@
-import { items, checked} from "../App";
+import { useState } from "react";
 
-const handleDelete = (item) => {
+const Handledelete = (item) => {
+  const items = useState([]);
+  const checked = useState([]);
     console.log("Poistaa tuotteen", item);
     return items && checked;
   };
-  export default handleDelete
+  export default Handledelete

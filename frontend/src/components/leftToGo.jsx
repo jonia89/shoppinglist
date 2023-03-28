@@ -1,6 +1,8 @@
-import { items, checked } from "../App";
+import { useState } from "react";
 
-const leftToGo = () => {
+const Lefttogo = () => {
+  const items = useState([]);
+  const checked = useState([]);
   if (items.length === 0 && checked.length > 0)
     return "Kaikki ostokset hoidettu, on aika suunnata kassalle";
   else if (items.length === 1)
@@ -11,4 +13,4 @@ const leftToGo = () => {
     return "Siirry muokkaamaan listaa";
   else if (items.length < 0) return "Nyt on jotain pahasti pielessä";
 };
-export default leftToGo;
+export default Lefttogo;
