@@ -1,36 +1,26 @@
-import React, { Component } from "react";
-import { items, checked } from "../App";
+import React from "react";
 
-export default class Manage extends Component {
-  listStyle = {
+const Manage = () => {
+ const listStyle = {
     fontSize: "25px",
     margin: "50px",
     display: "flex",
   };
-
-  constructor(props) {
-    super(props);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.state = {
-      items: [...items],
-      checked: [...checked],
-    };
-    this.state = { itemList: [...this.state.items, ...this.state.checked] };
-  }
-  handleDelete = (item) => {
+const itemList = [...this.props.items + this.props.checked]
+  const handleDelete = (item) => {
     console.log("Poistaa tuotteen", item);
-    return this.state.itemList;
+    return this.props.itemList;
   };
-  render() {
+
     return (
       <div>
-        <span style={this.listStyle}>
+        <span style={listStyle}>
           <ul>
-            {this.state.itemList.map((item) => (
+            {itemList.map((item) => (
               <li key={item}>
                 {item}
                 <button
-                  onClick={this.handleDelete}
+                  onClick={handleDelete()}
                   className="btn btn-danger btn-sm m-2"
                 >
                   Poista
@@ -42,4 +32,5 @@ export default class Manage extends Component {
       </div>
     );
   }
-}
+
+export default Manage

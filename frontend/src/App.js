@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {  useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Rootpage from "./pages/rootPage";
 import Listpage from "./pages/listPage";
@@ -8,13 +8,12 @@ const items = ["Pizza", "Leipä, ruis", "Maito"].sort();
 const checked = ["Kaljaa", "Tonnikalaa", "Majoneesia"].sort();
 
 export default function App() {
-
+  
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Rootpage />} />
-          <Route path="/list" element={<Listpage />} onChange={useState()} />
-
+          <Route path="/" element={<Rootpage />} useState={[items, checked]}/>
+          <Route path="/list" element={<Listpage />} />
           <Route path="/add" element={<Addpage />} onChange={useState()} />
         </Routes>
       </BrowserRouter>

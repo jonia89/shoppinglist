@@ -1,48 +1,41 @@
-import React, { Component } from "react";
-import { items, checked } from "../App";
+import React, { useState, setState } from "react";
 
-export default class Left extends Component {
-  textStyle = {
+const Left = () => {
+  const [items, checked] = useState([])
+  const textStyle = {
     fontSize: "25px",
     color: "red",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   };
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      items: [...items],
-      checked: [...checked]
-    };
-  }
-  leftToGo = () => {
-    if (this.state.items.length === 0 && this.state.checked.length > 0)
+  const leftToGo = () => {
+    if (items.length === 0 && checked.length > 0)
       return "Kaikki ostokset hoidettu, on aika suunnata kassalle";
-    else if (this.state.items.length === 1)
+    else if (items.length === 1)
       return (
         "Vielä " +
-        this.state.items.length +
+        items.length +
         " \ntuote jäljellä"
       );
-    else if (this.state.items.length > 1)
+    else if (items.length > 1)
       return (
-        "Vielä " + this.state.items.length + " \ntuotetta jäljellä"
+        "Vielä " + items.length + " \ntuotetta jäljellä"
       );
-      else if (this.state.items.length + this.state.checked.length === 0)
+      else if (items.length + checked.length === 0)
       return ("Siirry muokkaamaan listaa")
-    else if (this.state.items.length < 0)
+    else if (items.length < 0)
       return "Nyt on jotain pahasti pielessä";
   };
 
-  render() {
+  
     return (
       <div>
-        <span style={this.textStyle} className="badge badge-primary m-5">
-          {this.leftToGo()}
+        <span onChange={() => setState()} style={textStyle} className="badge badge-primary m-5">
+          {leftToGo()}
         </span>
       </div>
     );
   }
-}
+  export default Left

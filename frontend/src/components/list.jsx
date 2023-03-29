@@ -1,62 +1,52 @@
 import Checkbox from "@mui/material/Checkbox";
-import { items,checked } from "../App";
-import React, { Component } from "react";
+import React from "react";
 
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-    this.liftUp.bind(this);
-    this.dropDown.bind(this);
-    this.state = {
-      items: [...items],
-      checked: [...checked],
-    };
-  }
+const List = () => {
 
-  listStyle = {
+  const listStyle = {
     fontSize: "25px",
     margin: "30px",
     display: "flex",
   };
 
-  liftUp = (item) => {
+  const liftUp = (item) => {
     console.log("nostaa", item);
-    checked.pop(item);
-    items.push(item);
-    console.log(items);
-    console.log(checked);
-    return [...items, ...checked];
+    this.props.checked.pop(item);
+    this.props.items.push(item);
+    console.log(this.props.items);
+    console.log(this.props.checked);
+    return [...this.props.items, ...this.props.checked];
   };
 
-  dropDown = (item) => {
+  const dropDown = (item) => {
     console.log("tiputtaa", item);
-    items.pop(item);
-    checked.push(item);
-    console.log(items);
-    console.log(checked);
-    return [...items, ...checked];
+    this.props.items.pop(item);
+    this.props.checked.push(item);
+    console.log(this.props.items);
+    console.log(this.props.checked);
+    return [...this.props.items, ...this.props.checked];
   };
 
-  render() {
+
     return (
       <div className="item-list">
-        <span style={this.listStyle}>
+        <span style={listStyle}>
           <ul>
-            {this.state.items.map((item) => (
+            {this.props.items.map((item) => (
               <li key={item}>
                 {item}
-                <Checkbox onChange={this.dropDown} color="success" />
+                <Checkbox onChange={dropDown()} color="success" />
               </li>
             ))}
           </ul>
         </span>
-        <span style={this.listStyle}>
+        <span style={listStyle}>
           <ul>
-            {checked.map((item) => (
+            {this.props.checked.map((item) => (
               <li key={item}>
                 {item}
                 <Checkbox
-                  onChange={this.liftUp}
+                  onChange={liftUp()}
                   defaultChecked={true}
                   color="success"
                 />
@@ -67,4 +57,5 @@ export default class List extends Component {
       </div>
     );
   }
-}
+
+export default List
