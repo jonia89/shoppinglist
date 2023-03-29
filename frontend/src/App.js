@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Checkbox from "@mui/material/Checkbox";
 import "./App.css";
@@ -14,14 +14,6 @@ import {
   itemListStyle,
   leftToTextStyle,
 } from "./styles";
-import Additem from "./components/addItem";
-import Clearall from "./components/clearAll";
-import Clearchecked from "./components/clearChecked";
-import Countobjects from "./components/countObjects";
-import Dropdown from "./components/dropDown";
-import Handledelete from "./components/handleDelete";
-import Lefttogo from "./components/leftToGo";
-import Liftup from "./components/liftUp";
 
 //const items = [];
 //const checked = [];
@@ -30,7 +22,7 @@ const Home = () => (
   <div>
     <div>
       <span style={textStyle} className="badge badge-primary m-5">
-        {Countobjects}
+        {this.state.countObjects}
       </span>
     </div>
     <Link to="/list">
@@ -66,7 +58,7 @@ const List = () => (
     </Link>
     <div>
       <span style={leftToTextStyle} className="badge badge-primary m-5">
-        {Lefttogo}
+        {this.state.leftToGo}
       </span>
     </div>
     <div className="item-list">
@@ -75,7 +67,7 @@ const List = () => (
           {this.items.map((item) => (
             <li key={item}>
               {item}
-              <Checkbox onChange={Dropdown} color="success" />
+              <Checkbox onChange={this.state.dropDown} color="success" />
             </li>
           ))}
         </ul>
@@ -86,7 +78,7 @@ const List = () => (
             <li key={item}>
               {item}
               <Checkbox
-                onChange={Liftup}
+                onChange={this.state.liftUp}
                 defaultChecked={true}
                 color="success"
               />
@@ -116,7 +108,7 @@ const Add = () => (
       </div>
     </Link>
     <div className="New">
-      <form style={barStyle} onSubmit={Additem}>
+      <form style={barStyle}>
         <input
           ref={(item) => (this.inputElement = item)}
           className="'New-item"
@@ -139,7 +131,7 @@ const Add = () => (
             <li key={item}>
               {item}
               <button
-                onClick={Handledelete}
+                onClick={this.state.handleDelete}
                 className="btn btn-danger btn-sm m-2"
               >
                 Poista
@@ -152,7 +144,7 @@ const Add = () => (
             <li key={item}>
               {item}
               <button
-                onClick={Handledelete}
+                onClick={this.state.handleDelete}
                 className="btn btn-danger btn-sm m-2"
               >
                 Poista
@@ -164,20 +156,20 @@ const Add = () => (
     </div>
     <div>
       <span style={textStyle} className="badge badge-primary m-5">
-        {Countobjects}
+        {this.state.countObjects}
       </span>
     </div>
     <div style={clearStyle}>
       <div>
         <button
-          onDoubleClick={Clearchecked}
+          onDoubleClick={this.state.clearChecked}
           className="btn btn-danger btn-m m-2"
         >
           Poista valmiit tuplaklikkaamalla
         </button>
       </div>
       <div>
-        <button onDoubleClick={Clearall} className="btn btn-danger btn-m m-2">
+        <button onDoubleClick={this.state.clearAll} className="btn btn-danger btn-m m-2">
           Tyhjennä tuplaklikkaamalla
         </button>
       </div>
@@ -191,7 +183,102 @@ const Add = () => (
 );
 
 const App = () => {
-
+  const [items, checked] = useState([]);
+  const addItem = (item) => {
+    const newItem =
+      this.inputElement.value.charAt(0).toUpperCase() +
+      this.inputElement.value.slice(1);
+  
+    if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
+      this.state.items.push(newItem);
+      items.sort((a, b) => a - b);
+      this.inputElement.value = "";
+      console.log(items);
+      item.preventDefault();
+      return items;
+    } else if (
+      this.inputElement.value.length < 3 &&
+      this.inputElement.value.length > 0
+    ) {
+      return alert("Eipä taida olla tollaista tuotetta");
+    } else {
+      if (this.inputElement.value === "");
+      return alert("Tuotekenttä on tyhjä! Syötä tuote");
+    }
+  };
+  const clearAll = () => {
+    console.log("Tyhjentää listan");
+    console.log(items, checked);
+    const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
+    if (areYouSure === "kyllä") {
+      while (items.length > 0) {
+        items.pop();
+        while (checked.length > 0) {
+          checked.pop();
+        }
+      }
+      if (items.length === 0 && checked.length === 0) {
+        console.log(items, checked);
+        return alert("Lista tyhjennetty");
+      } else {
+        return items && checked;
+      }
+    }
+  };
+  const clearChecked = () => {
+    console.log("Poistaa jo ostetut");
+    console.log(items, checked);
+    const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
+    if (areYouSure === "kyllä") {
+      while (checked.length > 0) {
+        checked.pop();
+      }
+      if (checked.length === 0) {
+        console.log(items, checked);
+        return alert("Ostetut poistettu");
+      } else {
+        return items && checked;
+      }
+    }
+  };
+  const countObjects = () => {
+    if (items.length + checked.length === 0) return "Ostoslista on tyhjä";
+    else if (items.length + checked.length === 1)
+      return "Ostoslistalla on " + (items.length + checked.length) + " tuote";
+    return "Ostoslistalla on " + (items.length + checked.length) + " tuotetta";
+  };
+  const dropDown = (item) => {
+    console.log("tiputtaa", item);
+    items.pop(item);
+    checked.push(item);
+    console.log(items);
+    console.log(checked);
+    return [...items, ...checked];
+  };
+  const handleDelete = (item) => {
+    console.log("Poistaa tuotteen", item);
+    return items && checked;
+  };
+  const leftToGo = () => {
+    if (items.length === 0 && checked.length > 0)
+      return "Kaikki ostokset hoidettu, on aika suunnata kassalle";
+    else if (items.length === 1)
+      return "Vielä " + items.length + " \ntuote jäljellä";
+    else if (items.length > 1)
+      return "Vielä " + items.length + " \ntuotetta jäljellä";
+    else if (items.length + checked.length === 0)
+      return "Siirry muokkaamaan listaa";
+    else if (items.length < 0) return "Nyt on jotain pahasti pielessä";
+  };
+  const liftUp = (item) => {
+    console.log("nostaa", item);
+    checked.pop(item);
+    items.push(item);
+    console.log(items);
+    console.log(checked);
+    return [...items, ...checked];
+  };
+  
   return (
     <BrowserRouter>
       <Routes>
