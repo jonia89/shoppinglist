@@ -1,15 +1,15 @@
-import React, { setState, useState } from "react";
+import React, { Component } from "react";
+import { items, checked } from "../App";
 
-const New = () => {
-  let [items, newItem] = useState([]);
-  const barStyle = {
+export default class New extends Component {
+  barStyle = {
     display: "flex",
     padding: "20px",
     alignItems: "center",
     justifyContent: "center",
     background: "gray",
   };
-  const buttonStyle = {
+  buttonStyle = {
     margin: "20px",
     padding: "20px",
     display: "flex",
@@ -18,18 +18,26 @@ const New = () => {
     background: "yellow",
     color: "green",
   };
+  constructor(props) {
+    super(props);
+    this.addItem = this.addItem.bind(this);
+    this.state = {
+      items: [...items],
+      checked: [...checked]
+    }
+  }
 
-  const addItem = (item) => {
+  addItem = (item) => {
     if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-      newItem =
+      let newItem =
         this.inputElement.value.charAt(0).toUpperCase() +
         this.inputElement.value.slice(1);
-      items += newItem;
-      items.sort((a, b) => a - b);
+      this.state.items.push(newItem);
+      this.state.items.sort((a, b) => a - b);
       this.inputElement.value = "";
-      console.log(items);
+      console.log(this.state.items);
       item.preventDefault();
-      return items;
+      return this.state.items;
     } else if (
       this.inputElement.value.length < 3 &&
       this.inputElement.value.length > 0
@@ -41,26 +49,21 @@ const New = () => {
     }
   };
 
-  return (
-    <div className="New">
-      <form style={barStyle} onSubmit={addItem()}>
-        <input
-          ref={(item) => (this.inputElement = item)}
-          className="'New-item"
-          placeholder="Kirjoita tuote"
-          type="text"
-          onSubmit={() => setState()}
-        />
-        <button
-          style={buttonStyle}
-          type="submit"
-          //onClick={(this.setState = () => this.state)}
-        >
-          Lisää
-        </button>
-      </form>
-    </div>
-  );
-};
-
-export default New;
+  render() {
+    return (
+      <div className="New">
+        <form style={this.barStyle} onSubmit={this.addItem}>
+          <input
+            ref={(item) => (this.inputElement = item)}
+            className="'New-item"
+            placeholder="Kirjoita tuote"
+            type="text"
+          />
+          <button style={this.buttonStyle} type="submit" onClick={this.setState = () => this.state}>
+            Lisää
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
