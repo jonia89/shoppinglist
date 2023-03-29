@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../App.css";
+import Back from "../components/toList";
 import Manage from "../components/manage";
 import Counter from "../components/counter";
 import New from "../components/addItem";
@@ -13,14 +13,7 @@ export default function Addpage() {
     display: "flex",
     direction: "row",
   };
-  const buttonStyle = {
-    display: "flex",
-    margin: "50px",
-    padding: "20px",
-    background: "blue",
-    color: "white",
-  };
-
+ 
     return (
       <div>
         <Back onChange={useState()}/>

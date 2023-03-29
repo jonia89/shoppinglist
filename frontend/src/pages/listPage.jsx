@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../App.css";
+import Add from "../components/toAdd";
 import List from "../components/list";
 import Left from "../components/itemsLeft";
 import Icon from "../components/Icon";
