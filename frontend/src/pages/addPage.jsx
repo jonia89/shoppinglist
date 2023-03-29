@@ -13,19 +13,18 @@ export default function Addpage() {
     display: "flex",
     direction: "row",
   };
- 
-    return (
-      <div>
-        <Back onChange={useState()}/>
-        <New onChange={useState()}/>
-        <Manage onChange={useState()}/>
-        <Counter onChange={useState()}/>
-        <div style={clearStyle}>
-          <Clearchecked onChange={useState()}/>
-          <Clear onChange={useState()}/>
+
+  return (
+    <div>
+      <Back onChange={useState()} />
+      <New onChange={useState()} />
+      <Manage onChange={useState()} />
+      <Counter onChange={useState()} />
+      <div style={clearStyle}>
+        <Clearchecked onChange={useState()} />
+        <Clear onChange={useState()} />
       </div>
       <Icon />
     </div>
   );
-};
-
+}
