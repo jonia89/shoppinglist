@@ -1,22 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import List from "../components/list";
 import Left from "../components/itemsLeft";
 import Add from "../components/toAdd";
 import Icon from "../components/Icon";
 
-export default class Listpage extends Component {
-  addPage() {
-    return;
-  }
-  render() {
-    return (
-      <div>
-        <Add />
-        <Left />
-        <List />
-        <Icon />
-      </div>
-    );
-  }
+export default function Listpage() {
+  return (
+    <div>
+      <Add onChange={useState()}/>
+      <Left onChange={useState()}/>
+      <List onChange={useState()}/>
+      <Icon />
+    </div>
+  );
 }

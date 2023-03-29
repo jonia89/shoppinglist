@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../App.css";
 import Back from "../components/toList";
 import Manage from "../components/manage";
@@ -8,28 +8,24 @@ import Icon from "../components/Icon";
 import Clear from "../components/clear";
 import Clearchecked from "../components/clearChecked";
 
-export default class Addpage extends Component {
-  clearStyle = {
+export default function Addpage() {
+  const clearStyle = {
     display: "flex",
     direction: "row",
   };
 
-  listPage = () => {
-    return;
-  };
-  render() {
     return (
       <div>
-        <Back />
-        <New />
-        <Manage />
-        <Counter />
-        <div style={this.clearStyle}>
-          <Clearchecked />
-          <Clear />
+        <Back onChange={useState()}/>
+        <New onChange={useState()}/>
+        <Manage onChange={useState()}/>
+        <Counter onChange={useState()}/>
+        <div style={clearStyle}>
+          <Clearchecked onChange={useState()}/>
+          <Clear onChange={useState()}/>
         </div>
         <Icon />
       </div>
     );
   }
-}
+
