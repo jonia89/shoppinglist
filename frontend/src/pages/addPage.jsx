@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import Manage from "../components/manage";
@@ -8,7 +8,7 @@ import Icon from "../components/Icon";
 import Clear from "../components/clear";
 import Clearchecked from "../components/clearChecked";
 
-const Addpage = () => {
+export default function Addpage() {
   const clearStyle = {
     display: "flex",
     direction: "row",
@@ -21,33 +21,18 @@ const Addpage = () => {
     color: "white",
   };
 
-  const listPage = () => {
-    return;
-  };
-
-  return (
-    <div>
-      <Link to="/list" onClick={listPage()}>
-        <div>
-          <button
-            type="button"
-            style={buttonStyle}
-            className="btn btn-secondary sm"
-          >
-            Ostoslistaan
-          </button>
-        </div>
-      </Link>
-      <New />
-      <Manage />
-      <Counter />
-      <div style={clearStyle}>
-        <Clearchecked />
-        <Clear />
+    return (
+      <div>
+        <Back onChange={useState()}/>
+        <New onChange={useState()}/>
+        <Manage onChange={useState()}/>
+        <Counter onChange={useState()}/>
+        <div style={clearStyle}>
+          <Clearchecked onChange={useState()}/>
+          <Clear onChange={useState()}/>
       </div>
       <Icon />
     </div>
   );
 };
 
-export default Addpage;
