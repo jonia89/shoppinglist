@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Rootpage />} useState={[items, checked]} />
-        <Route path="/list" element={<Listpage />} />
+        <Route path="/list" element={<Listpage />} onChange={useState()} />
        
         <Route path="/add" element={<Addpage />} onChange={useState()} />
       </Routes>
