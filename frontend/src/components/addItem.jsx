@@ -23,8 +23,8 @@ export default class New extends Component {
     this.addItem = this.addItem.bind(this);
     this.state = {
       items: [...items],
-      checked: [...checked]
-    }
+      checked: [...checked],
+    };
   }
 
   addItem = (item) => {
@@ -32,6 +32,13 @@ export default class New extends Component {
       let newItem =
         this.inputElement.value.charAt(0).toUpperCase() +
         this.inputElement.value.slice(1);
+      if (this.state.items.includes(newItem)) {
+        console.log(this.state.items)
+        return alert(newItem + " on jo listalla");
+      } else if (this.state.checked.includes(newItem)) {
+        console.log(this.state.checked)
+        return alert(newItem + " on jo ostoskorissa");
+      }
       this.state.items.push(newItem);
       this.state.items.sort((a, b) => a - b);
       this.inputElement.value = "";
@@ -45,12 +52,6 @@ export default class New extends Component {
       return alert("Eipä taida olla tollaista tuotetta");
     } else if (this.inputElement.value === "") {
       return alert("Tuotekenttä on tyhjä! Syötä tuote");
-    } else {
-      if (this.state.items.includes(this.inputElement)) {
-        return alert(this.inputElement + " on jo listalla")
-      } else if (this.state.checked.includes(this.inputElement)) {
-        return alert(this.inputElement + " on jo ostoskorissa")
-      }
     }
   };
 
@@ -64,7 +65,11 @@ export default class New extends Component {
             placeholder="Kirjoita tuote"
             type="text"
           />
-          <button style={this.buttonStyle} type="submit" onClick={this.setState = () => this.state}>
+          <button
+            style={this.buttonStyle}
+            type="submit"
+            onClick={(this.setState = () => this.state)}
+          >
             Lisää
           </button>
         </form>
