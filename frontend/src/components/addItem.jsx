@@ -43,9 +43,14 @@ export default class New extends Component {
       this.inputElement.value.length > 0
     ) {
       return alert("Eipä taida olla tollaista tuotetta");
-    } else {
-      if (this.inputElement.value === "");
+    } else if (this.inputElement.value === "") {
       return alert("Tuotekenttä on tyhjä! Syötä tuote");
+    } else {
+      if (this.state.items.includes(this.inputElement)) {
+        return alert(this.inputElement + " on jo listalla")
+      } else if (this.state.checked.includes(this.inputElement)) {
+        return alert(this.inputElement + " on jo ostoskorissa")
+      }
     }
   };
 
