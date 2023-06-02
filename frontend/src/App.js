@@ -1,20 +1,20 @@
-import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Rootpage from "./pages/rootPage";
 import Listpage from "./pages/listPage";
 import Addpage from "./pages/addPage";
 
-const items = ["Pizza", "Leipä, ruis", "Maito"].sort();
-const checked = ["Kaljaa", "Tonnikalaa", "Majoneesia"].sort();
+
+const items = ["Aimovig", "Bufomix", "Candesartan", "Amlodipin", "Paradontax"].sort();
+const checked = [].sort();
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Rootpage />} useState={[items, checked]} />
-        <Route path="/list" element={<Listpage />} onChange={useState()} />
-       
-        <Route path="/add" element={<Addpage />} onChange={useState()} />
+        <Route path="/" element={<Rootpage />} />
+        <Route path="/list" element={<Listpage />} />
+
+        <Route path="/add" element={<Addpage />} />
       </Routes>
     </BrowserRouter>
   );

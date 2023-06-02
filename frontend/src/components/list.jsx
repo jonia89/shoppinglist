@@ -1,5 +1,5 @@
 import Checkbox from "@mui/material/Checkbox";
-import { items,checked } from "../App";
+import { items, checked } from "../App";
 import React, { Component } from "react";
 
 export default class List extends Component {
@@ -20,51 +20,62 @@ export default class List extends Component {
   };
 
   liftUp = (item) => {
+    item = this.state.checked.splice(this.state.checked.indexOf(item));
     console.log("nostaa", item);
-    checked.pop(item);
     items.push(item);
     console.log(items);
     console.log(checked);
-    return [...items, ...checked];
+    return this.state.items;
   };
 
   dropDown = (item) => {
+    item = this.state.items.splice(this.state.items.indexOf(item));
     console.log("tiputtaa", item);
-    items.pop(item);
     checked.push(item);
     console.log(items);
     console.log(checked);
-    return [...items, ...checked];
+    return this.state.checked;
   };
+  renderItems() {
+    return (
+      <ul>
+        {this.state.items.map((item) => (
+          <li key={item}>
+            {item}
+            <Checkbox onChange={this.dropDown} color="success" />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  renderChecked() {
+    return (
+      <ul>
+        {checked.map((item) => (
+          <li key={item}>
+            {item}
+            <Checkbox
+              onChange={this.liftUp}
+              defaultChecked={true}
+              color="success"
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
     return (
-      <div className="item-list">
-        <span style={this.listStyle}>
-          <ul>
-            {this.state.items.map((item) => (
-              <li key={item}>
-                {item}
-                <Checkbox onChange={this.dropDown} color="success" />
-              </li>
-            ))}
-          </ul>
-        </span>
-        <span style={this.listStyle}>
-          <ul>
-            {checked.map((item) => (
-              <li key={item}>
-                {item}
-                <Checkbox
-                  onChange={this.liftUp}
-                  defaultChecked={true}
-                  color="success"
-                />
-              </li>
-            ))}
-          </ul>
-        </span>
-      </div>
+      <React.Fragment>
+        <div className="items-list" style={this.listStyle}>
+          {this.renderItems()}
+        </div>
+        <div className="checked-list" style={this.listStyle}>
+          {this.renderChecked()}
+        </div>
+      </React.Fragment>
     );
   }
 }

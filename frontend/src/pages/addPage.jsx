@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../App.css";
 import Back from "../components/toList";
 import Manage from "../components/manage";
@@ -16,13 +15,13 @@ export default function Addpage() {
 
   return (
     <div>
-      <Back onChange={useState()} />
-      <New onChange={useState()} />
-      <Manage onChange={useState()} />
-      <Counter onChange={useState()} />
+      <Back />
+      <New />
+      <Manage />
+      <Counter />
       <div style={clearStyle}>
-        <Clearchecked onChange={useState()} />
-        <Clear onChange={useState()} />
+        <Clearchecked />
+        <Clear />
       </div>
       <Icon />
     </div>

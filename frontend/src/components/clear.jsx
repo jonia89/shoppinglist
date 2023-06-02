@@ -7,8 +7,8 @@ export default class Clear extends Component {
     this.clearAll.bind(this);
     this.state = {
       items: [...items],
-      checked: [...checked]
-    }
+      checked: [...checked],
+    };
   }
 
   clearAll = () => {
@@ -17,13 +17,13 @@ export default class Clear extends Component {
     const areYouSure = prompt("Oletko varma? (kirjoita kyllä vahvistaaksesi)");
     if (areYouSure === "kyllä") {
       while (this.state.items.length > 0) {
-        items.pop();
+        this.state.items.pop();
         while (this.state.checked.length > 0) {
-          checked.pop();
+          this.state.checked.pop();
         }
       }
       if (this.state.items.length === 0 && this.state.checked.length === 0) {
-        console.log(items, checked);
+        console.log(this.state.items, this.state.checked);
         return alert("Lista tyhjennetty");
       } else {
         return this.state.items && this.state.checked;

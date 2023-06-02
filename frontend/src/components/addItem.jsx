@@ -27,53 +27,54 @@ export default class New extends Component {
     };
   }
 
-  addItem = (item) => {
-    if (this.inputElement.value !== "" && this.inputElement.value.length > 2) {
-      let newItem =
-        this.inputElement.value.charAt(0).toUpperCase() +
-        this.inputElement.value.slice(1);
-      if (this.state.items.includes(newItem)) {
-        console.log(this.state.items)
-        return alert(newItem + " on jo listalla");
-      } else if (this.state.checked.includes(newItem)) {
-        console.log(this.state.checked)
-        return alert(newItem + " on jo ostoskorissa");
-      }
-      this.state.items.push(newItem);
-      this.state.items.sort((a, b) => a - b);
-      this.inputElement.value = "";
-      console.log(this.state.items);
-      item.preventDefault();
-      return this.state.items;
-    } else if (
-      this.inputElement.value.length < 3 &&
-      this.inputElement.value.length > 0
-    ) {
+  addItem = (event) => {
+    let newItem =
+      this.inputElement.value.trim().charAt(0).toUpperCase() +
+      this.inputElement.value.trim().slice(1);
+    if (newItem.length === 0) {
+      return alert("Tuotekenttä tyhjä, syötä tuote");
+    } else if (newItem.length < 3 && newItem.length > 0) {
       return alert("Eipä taida olla tollaista tuotetta");
-    } else if (this.inputElement.value === "") {
-      return alert("Tuotekenttä on tyhjä! Syötä tuote");
+    } else if (this.state.items.includes(newItem)) {
+      return alert(newItem + " on jo listalla");
+    } else if (this.state.checked.includes(newItem)) {
+      return alert(newItem + " on jo ostoskorissa");
     }
+    this.state.items.push(newItem);
+    this.state.items.sort((a, b) => a - b);
+    this.inputElement.value = "";
+    console.log(this.state.items);
+    return this.state.items;
   };
-
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  };
   render() {
     return (
-      <div className="New">
-        <form style={this.barStyle} onSubmit={this.addItem}>
-          <input
-            ref={(item) => (this.inputElement = item)}
-            className="'New-item"
-            placeholder="Kirjoita tuote"
-            type="text"
-          />
-          <button
-            style={this.buttonStyle}
-            type="submit"
-            onClick={(this.setState = () => this.state)}
+      <React.Fragment>
+        <div className="New">
+          <form
+            style={this.barStyle}
+            onSubmit={(event) => this.onSubmit(event)}
           >
-            Lisää
-          </button>
-        </form>
-      </div>
+            <input
+              ref={(item) => (this.inputElement = item)}
+              className="'New-item"
+              placeholder="Kirjoita tuote"
+              type="text"
+              onChange={(event) => this.setState({ item: event.target.value })}
+            />
+            <button
+              style={this.buttonStyle}
+              type="submit"
+              onClick={this.addItem}
+            >
+              Lisää
+            </button>
+          </form>
+        </div>
+      </React.Fragment>
     );
   }
 }

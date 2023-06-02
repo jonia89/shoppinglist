@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../App.css";
 import Add from "../components/toAdd";
 import List from "../components/list";
@@ -8,9 +7,9 @@ import Icon from "../components/Icon";
 export default function Listpage() {
   return (
     <div>
-      <Add onChange={useState()}/>
-      <Left onChange={useState()}/>
-      <List onChange={useState()}/>
+      <Add />
+      <Left />
+      <List />
       <Icon />
     </div>
   );

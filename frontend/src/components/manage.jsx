@@ -7,12 +7,12 @@ export default class Manage extends Component {
     margin: "10px",
     display: "flex",
   };
-checkedStyle = {
-  fontSize: "25px",
-  margin: "10px",
-  display: "flex",
-  color: "green"
-};
+  checkedStyle = {
+    fontSize: "25px",
+    margin: "10px",
+    display: "flex",
+    color: "green",
+  };
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
@@ -23,43 +23,60 @@ checkedStyle = {
   }
 
   handleDelete = (item) => {
+    if (this.state.items.includes(item)) {
+      item = this.state.items.splice(this.state.items.indexOf(item), 1);
+      return this.state.items;
+    } else if (this.state.checked.includes(item)) {
+      item = this.state.checked.splice(this.state.checked.indexOf(item), 1);
+      return this.state.checked;
+    }
     console.log("Poistaa tuotteen", item);
-    return this.state.itemList;
+    return [...items, ...checked];
   };
+  renderItems() {
+    return (
+      <ul>
+        {this.state.items.map((item) => (
+          <li key={item}>
+            {item}
+            <button
+              onClick={this.handleDelete}
+              className="btn btn-danger btn-sm m-2"
+            >
+              Poista
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  renderChecked() {
+    <ul>
+      {this.state.checked.map((item) => (
+        <li key={item}>
+          {item}
+          <button
+            onClick={this.handleDelete}
+            className="btn btn-danger btn-sm m-2"
+          >
+            Poista
+          </button>
+        </li>
+      ))}
+    </ul>;
+  }
+
   render() {
     return (
-      <div>
-        <span style={this.itemsStyle}>
-          <ul>
-            {this.state.items.map((item) => (
-              <li key={item}>
-                {item}
-                <button
-                  onClick={this.handleDelete}
-                  className="btn btn-danger btn-sm m-2"
-                >
-                  Poista
-                </button>
-              </li>
-            ))}
-          </ul>
-        </span>
-        <span style={this.checkedStyle}>
-          <ul>
-            {this.state.checked.map((item) => (
-              <li key={item}>
-                {item}
-                <button
-                  onClick={this.handleDelete}
-                  className="btn btn-danger btn-sm m-2"
-                >
-                  Poista
-                </button>
-              </li>
-            ))}
-          </ul>
-        </span>
-      </div>
+      <React.Fragment>
+        <div className="manage-items-List" style={this.itemsStyle}>
+          {this.renderItems()}
+        </div>
+        <div className="manage-checked-list" style={this.checkedStyle}>
+          {this.renderChecked()}
+        </div>
+      </React.Fragment>
     );
   }
 }
