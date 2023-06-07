@@ -17,24 +17,12 @@ export default class Addpage extends Component {
     return (
       <div>
         <Back />
-        <New
-          items={this.props.items}
-          checked={this.props.checked}
-          addItem={this.props.addItem}
-        />
-        <Manage
-          items={this.props.items}
-          checked={this.props.checked}
-          deleteItem={this.props.deleteItem}
-        />
-        <Counter
-          items={this.props.items}
-          checked={this.props.checked}
-          countObjects={this.props.countObjects}
-        />
+        <New items={this.props.items} checked={this.props.checked} />
+        <Manage items={this.props.items} checked={this.props.checked} />
+        <Counter items={this.props.items} checked={this.props.checked} />
         <div style={this.clearStyle}>
           <Clearchecked />
-          <Clear clearAll={this.props.clearAll}/>
+          <Clear />
         </div>
         <Icon />
       </div>

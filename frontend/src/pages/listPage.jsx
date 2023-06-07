@@ -10,8 +10,8 @@ export default class Listpage extends Component {
     return (
       <div>
         <Add />
-        <Left itemsLeft={this.props.itemsLeft} />
-        <List dropDown={this.dropDown} liftUp={this.liftUp} />
+        <Left items={this.props.items} checked={this.props.checked} />
+        <List items={this.props.items} checked={this.props.checked} />
         <Icon />
       </div>
     );

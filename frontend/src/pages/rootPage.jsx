@@ -14,7 +14,7 @@ export default class Rootpage extends Component {
   render() {
     return (
       <div>
-        <Counter countObjects={this.props.countObjects} />
+        <Counter items={this.props.items} checked={this.props.checked} />
         <div style={this.rowStyle}>
           <Back />
           <Add />
