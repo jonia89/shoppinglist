@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { items, checked } from "../App";
 
 export default class Manage extends Component {
   itemsStyle = {
@@ -13,34 +12,15 @@ export default class Manage extends Component {
     display: "flex",
     color: "green",
   };
-  constructor(props) {
-    super(props);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.state = {
-      items: [...items],
-      checked: [...checked],
-    };
-  }
 
-  handleDelete = (item) => {
-    if (this.state.items.includes(item)) {
-      item = this.state.items.splice(this.state.items.indexOf(item), 1);
-      return this.state.items;
-    } else if (this.state.checked.includes(item)) {
-      item = this.state.checked.splice(this.state.checked.indexOf(item), 1);
-      return this.state.checked;
-    }
-    console.log("Poistaa tuotteen", item);
-    return [...items, ...checked];
-  };
-  renderItems() {
+  renderItems = () => {
     return (
       <ul>
-        {this.state.items.map((item) => (
+        {this.props.items.map((item) => (
           <li key={item}>
             {item}
             <button
-              onClick={this.handleDelete}
+              onClick={this.props.deleteItem}
               className="btn btn-danger btn-sm m-2"
             >
               Poista
@@ -49,15 +29,15 @@ export default class Manage extends Component {
         ))}
       </ul>
     );
-  }
+  };
 
-  renderChecked() {
+  renderChecked = () => {
     <ul>
-      {this.state.checked.map((item) => (
+      {this.props.checked.map((item) => (
         <li key={item}>
           {item}
           <button
-            onClick={this.handleDelete}
+            onClick={this.props.deleteItem}
             className="btn btn-danger btn-sm m-2"
           >
             Poista
@@ -65,16 +45,16 @@ export default class Manage extends Component {
         </li>
       ))}
     </ul>;
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
         <div className="manage-items-List" style={this.itemsStyle}>
-          {this.renderItems()}
+          <span>{this.renderItems}</span>
         </div>
         <div className="manage-checked-list" style={this.checkedStyle}>
-          {this.renderChecked()}
+          <span>{this.renderChecked}</span>
         </div>
       </React.Fragment>
     );

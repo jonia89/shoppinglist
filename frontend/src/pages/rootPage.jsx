@@ -3,21 +3,24 @@ import Back from "../components/toList";
 import Counter from "../components/counter";
 import Icon from "../components/Icon";
 import Add from "../components/toAdd";
+import React, { Component } from "react";
 
-export default function Rootpage() {
-  const rowStyle = {
+export default class Rootpage extends Component {
+  rowStyle = {
     display: "flex",
     direction: "row",
   };
 
-  return (
-    <div>
-      <Counter />
-      <div style={rowStyle}>
-        <Back />
-        <Add />
+  render() {
+    return (
+      <div>
+        <Counter countObjects={this.props.countObjects} />
+        <div style={this.rowStyle}>
+          <Back />
+          <Add />
+        </div>
+        <Icon />
       </div>
-      <Icon />
-    </div>
-  );
+    );
+  }
 }
