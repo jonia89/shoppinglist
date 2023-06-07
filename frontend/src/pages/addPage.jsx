@@ -21,8 +21,8 @@ export default class Addpage extends Component {
         <Manage items={this.props.items} checked={this.props.checked} />
         <Counter items={this.props.items} checked={this.props.checked} />
         <div style={this.clearStyle}>
-          <Clearchecked />
-          <Clear />
+          <Clearchecked items={this.props.items} checked={this.props.checked}/>
+          <Clear items={this.props.items} checked={this.props.checked}/>
         </div>
         <Icon />
       </div>
