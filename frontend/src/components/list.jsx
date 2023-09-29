@@ -1,24 +1,24 @@
 import Checkbox from "@mui/material/Checkbox";
-import React, { Component } from "react";
+import React from "react";
 
-export default class List extends Component {
-  listStyle = {
+export default function List(props) {
+  const listStyle = {
     fontSize: "25px",
     margin: "30px",
     display: "flex",
   };
 
-  renderItems = () => {
+  const renderItems = () => {
     return (
       <ul>
-        {this.props.items.map((item) => (
+        {props.items.map((item) => (
           <li key={item}>
             {item}
             <Checkbox
-              onChange={this.props.dropDown}
+              onChange={props.dropDown}
               defaultChecked={false}
               color="success"
-              onClick={this.props.dropDown}
+              onClick={props.dropDown}
             />
           </li>
         ))}
@@ -26,17 +26,17 @@ export default class List extends Component {
     );
   };
 
-  renderChecked = () => {
+  const renderChecked = () => {
     return (
       <ul>
-        {this.props.checked.map((item) => (
+        {props.checked.map((item) => (
           <li key={item}>
             {item}
             <Checkbox
-              onChange={this.props.liftUp}
+              onChange={props.liftUp}
               defaultChecked={true}
               color="success"
-              onClick={this.props.liftUp}
+              onClick={props.liftUp}
             />
           </li>
         ))}
@@ -44,16 +44,14 @@ export default class List extends Component {
     );
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <div className="items-list" style={this.listStyle}>
-          {this.renderItems}
-        </div>
-        <div className="checked-list" style={this.listStyle}>
-          {this.renderChecked}
-        </div>
-      </React.Fragment>
-    );
-  }
+  return (
+    <div>
+      <div className="items-list" style={listStyle}>
+        {renderItems}
+      </div>
+      <div className="checked-list" style={listStyle}>
+        {renderChecked}
+      </div>
+    </div>
+  );
 }

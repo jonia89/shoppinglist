@@ -1,7 +1,5 @@
-import React, { Component } from "react";
-
-export default class Left extends Component {
-  textStyle = {
+export default function Left(props) {
+  const textStyle = {
     fontSize: "25px",
     color: "red",
     display: "flex",
@@ -9,13 +7,11 @@ export default class Left extends Component {
     justifyContent: "center",
   };
 
-  render() {
-    return (
-      <div>
-        <span style={this.textStyle} className="badge badge-primary m-5">
-          {this.props.itemsLeft}
-        </span>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <span style={textStyle} className="badge badge-primary m-5">
+        {props.itemsLeft}
+      </span>
+    </div>
+  );
 }

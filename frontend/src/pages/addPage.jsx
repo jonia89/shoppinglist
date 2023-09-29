@@ -6,26 +6,24 @@ import New from "../components/addItem";
 import Icon from "../components/Icon";
 import Clear from "../components/clear";
 import Clearchecked from "../components/clearChecked";
-import React, { Component } from "react";
 
-export default class Addpage extends Component {
-  clearStyle = {
+export default function Addpage(props) {
+  const clearStyle = {
     display: "flex",
     direction: "row",
   };
-  render() {
-    return (
-      <div>
-        <Back />
-        <New items={this.props.items} checked={this.props.checked} />
-        <Manage items={this.props.items} checked={this.props.checked} />
-        <Counter items={this.props.items} checked={this.props.checked} />
-        <div style={this.clearStyle}>
-          <Clearchecked items={this.props.items} checked={this.props.checked}/>
-          <Clear items={this.props.items} checked={this.props.checked}/>
-        </div>
-        <Icon />
+
+  return (
+    <div>
+      <Back />
+      <New items={props.items} checked={props.checked} />
+      <Manage items={props.items} checked={props.checked} />
+      <Counter items={props.items} checked={props.checked} />
+      <div style={clearStyle}>
+        <Clearchecked items={props.items} checked={props.checked} />
+        <Clear items={props.items} checked={props.checked} />
       </div>
-    );
-  }
+      <Icon />
+    </div>
+  );
 }

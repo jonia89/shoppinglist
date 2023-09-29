@@ -1,14 +1,12 @@
-import React, { Component } from "react";
-
-export default class New extends Component {
-  barStyle = {
+export default function New(props) {
+  const barStyle = {
     display: "flex",
     padding: "20px",
     alignItems: "center",
     justifyContent: "center",
     background: "gray",
   };
-  buttonStyle = {
+  const buttonStyle = {
     margin: "20px",
     padding: "20px",
     display: "flex",
@@ -18,21 +16,14 @@ export default class New extends Component {
     color: "green",
   };
 
-  
-  render() {
-    return (
-      <div className="New">
-        <form style={this.barStyle}>
-          <input
-            className="'New-item"
-            placeholder="Kirjoita tuote"
-            type="text"
-          />
-          <button style={this.buttonStyle} type="submit" onClick={this.props.addItem}>
-            Lisää
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div className="New">
+      <form style={barStyle}>
+        <input className="'New-item" placeholder="Kirjoita tuote" type="text" />
+        <button style={buttonStyle} type="submit" onClick={props.addItem}>
+          Lisää
+        </button>
+      </form>
+    </div>
+  );
 }

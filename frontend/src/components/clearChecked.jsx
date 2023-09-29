@@ -1,17 +1,12 @@
-import React, { Component } from "react";
-
-export default class Clearchecked extends Component {
-
-  render() {
-    return (
-      <div>
-        <button
-          onDoubleClick={this.clearChecked}
-          className="btn btn-danger btn-m m-2"
-        >
-          Poista valmiit tuplaklikkaamalla
-        </button>
-      </div>
-    );
-  }
+export default function Clearchecked(props) {
+  return (
+    <div>
+      <button
+        onDoubleClick={props.clearChecked}
+        className="btn btn-danger btn-m m-2"
+      >
+        Poista valmiit tuplaklikkaamalla
+      </button>
+    </div>
+  );
 }
