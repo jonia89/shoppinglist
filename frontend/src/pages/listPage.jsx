@@ -1,15 +1,15 @@
 import "../App.css";
 import Add from "../components/toAdd";
-import List from "../components/list";
-import Left from "../components/itemsLeft";
+import ItemList from "../components/ItemList";
+import ItemsLeft from "../components/ItemsLeft";
 import Icon from "../components/Icon";
 
 export default function Listpage(props) {
   return (
     <div>
       <Add />
-      <Left items={props.items} checked={props.checked} />
-      <List items={props.items} checked={props.checked} />
+      <ItemsLeft items={props.items} />
+      <ItemList items={props.items} />
       <Icon />
     </div>
   );

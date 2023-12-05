@@ -7,10 +7,15 @@ export default function Counter(props) {
     justifyContent: "center",
   };
 
+  const countObjects = () => {
+    const counted = props.items.length;
+    return counted;
+  };
+
   return (
     <div>
       <span style={textStyle} className="badge badge-primary m-5">
-        {props.countObjects}
+        {countObjects()}
       </span>
     </div>
   );
